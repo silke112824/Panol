@@ -23,12 +23,20 @@ import com.example.panol.ui.viewmodel.CatalogoViewModel
 
 
 @Composable
-fun CatalogoScreen(viewModel: CatalogoViewModel = viewModel(),
-                   onNavigateToCarrito: () -> Unit,) {
-    val equipos by viewModel.equipos.collectAsState()
+fun CatalogoScreen(
+    viewModel: CatalogoViewModel = viewModel(),
+    onNavigateToCarrito: () -> Unit
+) {
+    val todosLosEquipos by viewModel.equipos.collectAsState()
     val filtro by viewModel.filtroSeleccionado.collectAsState()
     val categorias = listOf("Todos", "Proyector", "Robotica", "Notebook", "Alargador")
 
+    // Aplicamos el filtro sobre la lista antes de pasarla al LazyColumn
+    val equiposFiltrados = if (filtro == "Todos" || filtro.isBlank()) {
+        todosLosEquipos
+    } else {
+        todosLosEquipos.filter { it.categoria.equals(filtro, ignoreCase = true) }
+    }
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text(
@@ -49,14 +57,15 @@ fun CatalogoScreen(viewModel: CatalogoViewModel = viewModel(),
                 )
             }
         }
-        // Lista de Equipos con Animacion
+
+        // Lista de Equipos Filtrados
         AnimatedVisibility(
             visible = true,
             enter = fadeIn(),
             exit = fadeOut()
         ) {
             LazyColumn {
-                items(equipos) { equipo ->
+                items(equiposFiltrados) { equipo ->
                     EquipoTarjeta(
                         equipo = equipo,
                         onAgregarClick = { id -> viewModel.agregarAlCarrito(id) }
@@ -64,7 +73,8 @@ fun CatalogoScreen(viewModel: CatalogoViewModel = viewModel(),
                 }
             }
         }
-        //boton para ir al carrito
+
+        // Botón para ir al carrito
         Button(
             onClick = onNavigateToCarrito,
             modifier = Modifier.fillMaxWidth().height(56.dp).padding(top = 8.dp)
@@ -73,7 +83,6 @@ fun CatalogoScreen(viewModel: CatalogoViewModel = viewModel(),
         }
     }
 }
-
 @Composable
 fun EquipoTarjeta(equipo: EquipoModel, onAgregarClick: (String) -> Unit) {
     val haptic = LocalHapticFeedback.current
