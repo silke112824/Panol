@@ -1,4 +1,4 @@
-package com.example.myappnavigation.ui.screen
+package com.example.panol.ui.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -31,24 +31,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myappnavigation.R
-import com.example.myappnavigation.ui.components.Footer
-import com.example.myappnavigation.ui.components.Header
+import com.example.panol.R
+import com.example.panol.ui.components.Footer
+import com.example.panol.ui.components.Header
 
 @Composable
-fun ScreenHeroe(onNavigateToLogin: () -> Unit)
+fun ScreenInicio(onNavigateToLogin: () -> Unit)
 {
     val context = LocalContext.current
     Scaffold(
-        topBar = { Header(title = "SUPER HERO APP") },
-        bottomBar = { Footer() }
+        topBar = { Header("Pañol") }
     ) {
             innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(Color(0xFFF44336)),
+                .background(Color(0xFF262626)),
             contentAlignment = Alignment.Center
         ){
             Column(
@@ -56,17 +55,6 @@ fun ScreenHeroe(onNavigateToLogin: () -> Unit)
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier.padding(16.dp)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.logo),
-                    contentDescription = "Logo de super héroe",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .size(240.dp)
-                        .shadow(12.dp, shape = CircleShape)
-                        .clip(CircleShape)
-                        .border(4.dp, Color(0xFFFFD700), CircleShape)
-                )
-                Spacer(modifier = Modifier.height(32.dp))
 
                 Button(
                     onClick = {
@@ -95,6 +83,6 @@ fun ScreenHeroe(onNavigateToLogin: () -> Unit)
 
 @Preview(showBackground = true)
 @Composable
-fun ScreenHeroePreview(){
-    ScreenHeroe (onNavigateToLogin = {})
+fun ScreenInicioPreview(){
+    ScreenInicio (onNavigateToLogin = {})
 }

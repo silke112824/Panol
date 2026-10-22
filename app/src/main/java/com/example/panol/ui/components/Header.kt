@@ -1,4 +1,4 @@
-package com.example.myappnavigation.ui.components
+package com.example.panol.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

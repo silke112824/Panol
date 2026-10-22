@@ -1,4 +1,4 @@
-package com.example.myappnavigation.ui.components
+package com.example.panol.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun Footer(
-    copyrightText: String ="© 2026 App de Héroes. Todos los derechos reservados",
-    backGroundColor: Color = Color(0xFF0B0B0B),
+    copyrightText: String ="Pañol App",
+    backGroundColor: Color = Color(0xFF262626),
     textColor:Color=Color.White
 ){
     Box(

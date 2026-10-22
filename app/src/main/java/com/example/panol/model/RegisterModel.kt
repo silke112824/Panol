@@ -1,4 +1,4 @@
-package com.example.myappnavigation.model
+package com.example.panol.model
 
 data class RegisterModel(
     val name: String = "",

@@ -1,4 +1,4 @@
-package com.example.myappnavigation.ui.screen
+package com.example.panol.ui.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -21,11 +21,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.myappnavigation.ui.components.Footer
-import com.example.myappnavigation.ui.components.Header
-import com.example.myappnavigation.ui.viewmodel.RegisterViewModel
+import com.example.panol.ui.components.Footer
+import com.example.panol.ui.components.Header
+import com.example.panol.ui.viewmodel.RegisterViewModel
 
 
 @Composable
@@ -37,8 +38,7 @@ fun Register(
     val context = LocalContext.current // Contexto para acceder a la BD SQLite y lanzar el Toast
 
     Scaffold(
-        topBar = { Header("REGISTRO DE USUARIO") },
-        bottomBar = { Footer() }
+        topBar = { Header("REGISTRO DE USUARIO") }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -119,4 +119,10 @@ fun Register(
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ScreenRegisterPreview(){
+    Register (onNavigateToLogin = {})
 }

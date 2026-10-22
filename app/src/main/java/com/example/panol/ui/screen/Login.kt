@@ -1,4 +1,4 @@
-package com.example.myappnavigation.ui.screen
+package com.example.panol.ui.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -20,12 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.myappnavigation.ui.components.Footer
-import com.example.myappnavigation.ui.components.Header
+import com.example.panol.ui.components.Footer
+import com.example.panol.ui.components.Header
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.myappnavigation.ui.viewmodel.LoginViewModel
+import com.example.panol.ui.viewmodel.LoginViewModel
 
 @Composable
 fun Login(
@@ -37,8 +38,7 @@ fun Login(
     val context = LocalContext.current // <-- contexto para la base de datos SQLite y Toast
 
     Scaffold(
-        topBar = { Header("INICIAR SESIÓN") },
-        bottomBar = { Footer() }
+        topBar = { Header("INICIAR SESION") }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -106,4 +106,12 @@ fun Login(
             }
         }
     }
+}
+@Preview(showBackground = true)
+@Composable
+fun ScreenLoginPreview() {
+    Login(
+        onNavigateToRegister = {},
+        onLoginSuccess = {}
+    )
 }

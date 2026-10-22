@@ -1,10 +1,10 @@
-package com.example.myappnavigation.data.local.dao
+package com.example.panol.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.myappnavigation.data.local.entity.UsuarioEntity
+import com.example.panol.data.local.entity.UsuarioEntity
 
 @Dao
 interface UsuarioDao {

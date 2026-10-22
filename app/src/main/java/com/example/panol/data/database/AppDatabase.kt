@@ -1,11 +1,11 @@
-package com.example.myappnavigation.data.database
+package com.example.panol.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.myappnavigation.data.local.dao.UsuarioDao
-import com.example.myappnavigation.data.local.entity.UsuarioEntity
+import com.example.panol.data.local.dao.UsuarioDao
+import com.example.panol.data.local.entity.UsuarioEntity
 
 @Database(entities = [UsuarioEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {

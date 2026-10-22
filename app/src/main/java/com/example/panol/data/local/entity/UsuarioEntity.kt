@@ -1,4 +1,4 @@
-package com.example.myappnavigation.data.local.entity
+package com.example.panol.data.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

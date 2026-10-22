@@ -1,13 +1,13 @@
-package com.example.myappnavigation.ui.viewmodel
+package com.example.panol.ui.viewmodel
 import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myappnavigation.data.database.AppDatabase
-import com.example.myappnavigation.data.local.entity.UsuarioEntity
-import com.example.myappnavigation.model.RegisterModel
+import com.example.panol.data.database.AppDatabase
+import com.example.panol.data.local.entity.UsuarioEntity
+import com.example.panol.model.RegisterModel
 import kotlinx.coroutines.launch
 
 class RegisterViewModel : ViewModel() {
