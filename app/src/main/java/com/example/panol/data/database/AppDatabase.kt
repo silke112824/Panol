@@ -4,14 +4,24 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.panol.data.local.dao.PanolDao
 import com.example.panol.data.local.dao.UsuarioDao
+import com.example.panol.data.local.entity.EquipoEntity
+import com.example.panol.data.local.entity.ReservaEntity
 import com.example.panol.data.local.entity.UsuarioEntity
 
-@Database(entities = [UsuarioEntity::class], version = 1, exportSchema = false)
+
+@Database(
+    entities = [UsuarioEntity::class, EquipoEntity::class, ReservaEntity::class],
+    version = 2,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun usuarioDao(): UsuarioDao
-    companion object {          //propio del patrón singleton
+    abstract fun panolDao(): PanolDao
+
+    companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
@@ -20,12 +30,12 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "Myapp_database.db" // definimos nombre del archivo SQLite
-                ).build()
+                        "Myapp_database.db"
+                )
+                    .build()
                 INSTANCE = instance
                 instance
             }
         }
     }
-
 }

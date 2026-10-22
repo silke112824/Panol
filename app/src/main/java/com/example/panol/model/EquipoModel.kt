@@ -6,4 +6,5 @@ data class EquipoModel(
     val marcaModelo: String = "",
     val categoria: String = "",
     val stockDisponible: Int,
+    val estado: String = ""
 )

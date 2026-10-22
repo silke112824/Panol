@@ -31,7 +31,7 @@ import com.example.panol.ui.viewmodel.LoginViewModel
 @Composable
 fun Login(
     onNavigateToRegister: () -> Unit,
-    onLoginSuccess: () -> Unit, //se agrega cuando el login es exitoso
+    onLoginSuccess: () -> Unit,
     viewModel: LoginViewModel = viewModel()
 ) {
     val state = viewModel.uiState

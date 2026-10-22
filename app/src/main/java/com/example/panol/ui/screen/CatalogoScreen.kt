@@ -11,6 +11,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,10 +23,12 @@ import com.example.panol.ui.viewmodel.CatalogoViewModel
 
 
 @Composable
-fun CatalogoScreen(viewModel: CatalogoViewModel = viewModel(), onNavigateToReserva: () -> Unit) {
+fun CatalogoScreen(viewModel: CatalogoViewModel = viewModel(),
+                   onNavigateToCarrito: () -> Unit,) {
     val equipos by viewModel.equipos.collectAsState()
     val filtro by viewModel.filtroSeleccionado.collectAsState()
-    val categorias = listOf("Todos", "Herramientas", "Corte", "Medicion")
+    val categorias = listOf("Todos", "Proyector", "Robotica", "Notebook", "Alargador")
+
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text(
@@ -53,15 +57,27 @@ fun CatalogoScreen(viewModel: CatalogoViewModel = viewModel(), onNavigateToReser
         ) {
             LazyColumn {
                 items(equipos) { equipo ->
-                    EquipoTarjeta (equipo, onNavigateToReserva)
+                    EquipoTarjeta(
+                        equipo = equipo,
+                        onAgregarClick = { id -> viewModel.agregarAlCarrito(id) }
+                    )
                 }
             }
+        }
+        //boton para ir al carrito
+        Button(
+            onClick = onNavigateToCarrito,
+            modifier = Modifier.fillMaxWidth().height(56.dp).padding(top = 8.dp)
+        ) {
+            Text("Ver Carrito y Reservar", style = MaterialTheme.typography.titleMedium)
         }
     }
 }
 
 @Composable
-fun EquipoTarjeta(equipo: EquipoModel, onReservarClick: () -> Unit) {
+fun EquipoTarjeta(equipo: EquipoModel, onAgregarClick: (String) -> Unit) {
+    val haptic = LocalHapticFeedback.current
+
     Card(
         modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
@@ -75,14 +91,19 @@ fun EquipoTarjeta(equipo: EquipoModel, onReservarClick: () -> Unit) {
                 Text(text = equipo.nombre, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
                 Text(text = equipo.marcaModelo, style = MaterialTheme.typography.bodyMedium)
                 Text(
-                    text = "Stock Disponible: ${equipo.stockDisponible}"
+                    text = "Stock Disponible: ${equipo.stockDisponible}",
+                    color = if (equipo.stockDisponible > 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodySmall
                 )
             }
             Button(
-                onClick = onReservarClick,
+                onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onAgregarClick(equipo.id)
+                },
                 enabled = equipo.stockDisponible > 0
             ) {
-                Text("Reservar")
+                Text("Agregar al Carrito")
             }
         }
     }
@@ -92,6 +113,6 @@ fun EquipoTarjeta(equipo: EquipoModel, onReservarClick: () -> Unit) {
 @Composable
 fun CatalogoPreview() {
     CatalogoScreen(
-        onNavigateToReserva = {}
+        onNavigateToCarrito = {}
     )
 }
