@@ -17,7 +17,6 @@ El sistema reemplaza las solicitudes informales vía correo electrónico por una
 * **Carrito de Solicitudes Internas:** Permite agrupar múltiples recursos en una sola solicitud consolidada antes de enviar el pedido.
 * **Validación Crítica de Anticipación (3 Horas):** Bloqueo automático mediante código de solicitudes efectuadas con menos de 3 horas respecto al horario de uso programado.
 * **Recursos Nativos:** Integración de `DatePickerDialog` de Material 3 para la selección nativa e intuitiva de fechas.
-* **Consola de Administración (TI):** Gestión de estados de tickets (*Pendiente*, *Aceptada*, *Rechazada*, *Entregada*, *Devuelta*) con justificación escrita obligatoria en caso de rechazo.
 
 ---
 
@@ -81,10 +80,4 @@ com.example.panol
 Este proyecto es un prototipo académico MVP. **Toda información, catálogo, usuarios y registros de correo presentados en la aplicación son estrictamente sintéticos y ficticios**, creados con el único propósito de evaluación académica sin involucrar datos reales de la institución escolar.
 
 ---
-
-## 👥 Integrantes y Gestión
-
-* **Desarrolladores:** Equipo de Estudiantes - Sede Maipú
-* **Coordinación CITT:** Christian Lazcano
-* **Control de Versiones:** Git Flow / GitHub Flow
-* **Planificación:** Tablero Trello
+Sebastian Herrera
